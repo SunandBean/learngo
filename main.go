@@ -1,27 +1,16 @@
 package main // main -> only for compiling
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
-func lenAndUpper(name string) (int, string) {
-	return len(name), strings.ToUpper(name)
-}
-
-func lenAndUpper2(name string) (length int, uppercase string) {
-	defer fmt.Println("I'm done") // defer: running this command after finishing this function
-	length = len(name)
-	uppercase = strings.ToUpper(name)
-	return
-}
-
-func repeatMe(words ...string) {
-	fmt.Println(words)
+func superAdd(numbers ...int) int {
+	total := 0
+	for _, number := range numbers {
+		total += number
+	}
+	return total
 }
 
 func main() {
-	repeatMe("nico", "lynn", "dal", "marl", "flynn")
-	totalLength, upperCase := lenAndUpper2("nico")
-	fmt.Println(totalLength, upperCase)
+	result := superAdd(1, 2, 3, 4, 5, 6, 7, 8, 9)
+	fmt.Println(result)
 }
