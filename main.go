@@ -1,13 +1,9 @@
 package main // main -> only for compiling
 
-import (
-	"fmt"
-
-	"github.com/sunandbean/learngo/something"
-)
+import "fmt"
 
 func main() {
-	fmt.Println("Hello world!")
-	something.SayHello() // Start with Uppercase -> export from other package
-	// something.sayBye()   // Start with Lowercase -> private function
+	const name string = "nico"
+	name = "Lynn"
+	fmt.Println(name)
 }
