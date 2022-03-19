@@ -10,7 +10,7 @@ func superAdd(numbers ...int) int {
 	return total
 }
 
-func cnaIDrink(age int) bool {
+func canIDrink(age int) bool {
 	if koreanAge := age + 2; koreanAge < 18 {
 		return false
 	}
