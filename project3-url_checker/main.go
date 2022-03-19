@@ -23,6 +23,14 @@ func main() {
 		// fmt.Println(url)
 		result := "OK"
 		err := hitURL(url)
+		if err != nil {
+			result = "FAILED"
+		}
+		results[url] = result
+	}
+	// fmt.Println(results)
+	for url, result := range results {
+		fmt.Println(url, result)
 	}
 }
 
@@ -30,9 +38,9 @@ func hitURL(url string) error {
 	fmt.Println("Checking ", url)
 	resp, err := http.Get(url)
 	if err != nil || resp.StatusCode >= 400 {
-		return errRequestFailed
-	} else {
+		fmt.Println(err)
 		fmt.Println(resp.StatusCode)
+		return errRequestFailed
 	}
 	return nil
 }
