@@ -1,4 +1,4 @@
-package prev
+package prev_1
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 
 var errRequestFailed = errors.New("Request failed")
 
-func prev() {
+func prev_1() {
 	var results = make(map[string]string)
 	urls := []string{
 		"https://www.airbnb.com/",
