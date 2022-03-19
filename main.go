@@ -18,12 +18,12 @@ func canIDrink(age int) bool {
 }
 
 func canIDrink2(age int) bool {
-	switch {
-	case age < 18:
+	switch koreanAge := age + 2; koreanAge {
+	case 10:
 		return false
-	case age == 18:
+	case 18:
 		return true
-	case age > 50:
+	case 50:
 		return false
 	}
 	return false
