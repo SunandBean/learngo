@@ -17,6 +17,18 @@ func canIDrink(age int) bool {
 	return true
 }
 
+func canIDrink2(age int) bool {
+	switch {
+	case age < 18:
+		return false
+	case age == 18:
+		return true
+	case age > 50:
+		return false
+	}
+	return false
+}
+
 func main() {
-	fmt.Println(canIDrink(16))
+	fmt.Println(canIDrink2(18))
 }
