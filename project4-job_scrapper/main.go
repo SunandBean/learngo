@@ -47,13 +47,13 @@ func writeJobs(jobs []extractedJob) {
 	w := csv.NewWriter(file)
 	defer w.Flush()
 
-	headers := []string{"ID", "Title", "Location", "Salary", "Summary"}
+	headers := []string{"Link", "Title", "Location", "Salary", "Summary"}
 
 	wErr := w.Write(headers)
 	checkErr(wErr)
 
 	for _, job := range jobs {
-		jobSlice := []string{job.id, job.title, job.location, job.salary, job.summary}
+		jobSlice := []string{"https://kr.indeed.com/viewjob?jk=" + job.id, job.title, job.location, job.salary, job.summary}
 		jwErr := w.Write(jobSlice)
 		checkErr(jwErr)
 	}
@@ -77,7 +77,9 @@ func getPage(page int) []extractedJob {
 	// searchCards := doc.Find(".jobsearch-SerpJobCard")
 	searchCards := doc.Find(".tapItem")
 
+	fmt.Println("searchCards: ", searchCards)
 	searchCards.Each(func(i int, card *goquery.Selection) {
+		fmt.Println(card)
 		job := extractJob(card)
 		jobs = append(jobs, job)
 	})
@@ -87,17 +89,21 @@ func getPage(page int) []extractedJob {
 
 func extractJob(card *goquery.Selection) extractedJob {
 	id, _ := card.Attr("data-jk")
+	fmt.Println("ID:", id)
 	// title := cleanString(card.Find(".title>a").Text())
-	// location := cleanString(card.Find(".sjcl").Text())
-	// salary := cleanString(card.Find(".salaryText").Text())
-	// summary := cleanString(card.Find(".summary").Text())
-
 	title := cleanString(card.Find("h2>span").Text())
-	// title := cleanString(card.Find(".jobTitle").Text())
+	fmt.Println("Title:", title)
+	// location := cleanString(card.Find(".sjcl").Text())
 	location := cleanString(card.Find(".companyLocation").Text())
+	fmt.Println("Location:", location)
+	// salary := cleanString(card.Find(".salaryText").Text())
 	salary := cleanString(card.Find(".salary-snippet").Text())
+	fmt.Println("Salary:", salary)
+	// summary := cleanString(card.Find(".summary").Text())
 	summary := cleanString(card.Find(".job-snippet").Text())
+	fmt.Println("Summary:", summary)
 	fmt.Println(id, title, location, salary, summary)
+
 	return extractedJob{
 		id:       id,
 		title:    title,
