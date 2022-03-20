@@ -18,13 +18,14 @@ func main() {
 	totalPages := getPages()
 	fmt.Println(totalPages)
 
-	// for i := 0; i < totalPages; i++ {
-	// 	getPage(i)
-	// }
+	for i := 0; i < totalPages; i++ {
+		getPage(i)
+	}
 }
 
 func getPage(page int) {
-
+	pageURL := baseURL + "&start=" + strconv.Itoa(page*50)
+	fmt.Println("Requesting", pageURL)
 }
 
 //baseURL 참조 변경 및 페이지 추출 함수
@@ -61,16 +62,6 @@ func getPages() int {
 // 	// 	// fmt.Println(s.Find("a").Length())
 // 	// 	pages = s.Find("a").Length()
 // 	// })
-
-// 	doc.Find("#searchCountPages").Each(func(i int, s *goquery.Selection) {
-// 		result := strings.TrimSpace(s.Text()) //Remove Empty Space
-// 		r, _ := regexp.Compile("([0-9])")     // Get Numbers in result
-// 		//Slice the List Becuase base URL page is always 0
-// 		pageList := r.FindAllString(result, -1)[1:]
-// 		//Make list to string and change type
-// 		new, _ := strconv.Atoi(strings.Join(pageList, ""))
-// 		pages = new / 50 //Set each page show 50 results
-// 	})
 
 // 	return pages
 // }
