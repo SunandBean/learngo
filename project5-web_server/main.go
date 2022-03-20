@@ -32,3 +32,5 @@ func main() {
 	e.POST("/scrape", handleScrape)
 	e.Logger.Fatal(e.Start(":1323"))
 }
+
+// gobuffalo
